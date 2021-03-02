@@ -1,0 +1,10 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "description": "A scatterplot",
+  "data": {"url":"./mydata.json"},
+  "mark": "point",
+    "encoding": {
+      "x": {"field": "x","type": "quantitative"},
+      "y": {"field": "y","type": "quantitative"}
+    }
+}

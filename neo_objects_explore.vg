@@ -1,0 +1,30 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "repeat": {
+    "row": ["q_au_1", "q_au_2", "moid_au", "i_deg"],
+    "column": ["q_au_1", "q_au_2", "moid_au", "i_deg"]
+  },
+  "spec": {
+    "params": [
+      {"name": "brush",
+      "select": {
+        "type": "interval",
+        "resolve": "global"
+      }
+    }
+    ],
+    "data": {"url": "./neo_objects.json"},
+    "mark": "point",
+    "encoding": {
+      "x": {"field": {"repeat": "column"}, "type": "quantitative"},
+      "y": {"field": {"repeat": "row"}, "type": "quantitative"},
+      "color": {
+        "condition": {
+          "param": "brush",
+          "field": "pha", "type": "nominal"
+        },
+      "value": "grey"
+    }
+  }
+}
+}

@@ -30,7 +30,7 @@ function makeTrees() {
   const secondPanel = select("#panel2");
   yield svg.node();
   const quadTree = quadtree()
-    .x( d => xScale(d.X)) //get x points
+    .xPoints( d => xScale(d.X)) //get x points
     .y(d=> yScale(d.Y)) //get y points
     .addAll(trees);
   svg.on("mousemove", (e,d) => {

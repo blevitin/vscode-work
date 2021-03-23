@@ -49,8 +49,8 @@ function makeTrees() {
    .attr("height", height)
    .attr("viewBox", [0,0,1,1])
    .style("border", "solid 1px black");
-  const xScale = scaleLinear().domain(extent(trees, d=> d.X)).range([0,1]); //ranges need to be in arrays
-  const yScale = scaleLinear().domain(extent(trees, d=> d.Y)).range([1,0]);
+  const xScale = d3.scaleLinear().domain(extent(trees, d=> d.X)).range([0,1]); //ranges need to be in arrays
+  const yScale = d3.scaleLinear().domain(extent(trees, d=> d.Y)).range([1,0]);
    svg.append("g")
     .attr("id", "trees")
     .selectAll("circle")

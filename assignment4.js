@@ -28,7 +28,8 @@ function makeTrees() {
   const {svg, xScale, yScale} = makeTrees();
   const leftPanel = select("#panel1");
   const secondPanel = select("#panel2");
-  yield svg.node()
+  var test = svg.node();
+  leftPanel.appendChild(test);
   const quadTree = quadtree()
     .x( d => xScale(d.X)) //get x points
     .y(d=> yScale(d.Y)) //get y points

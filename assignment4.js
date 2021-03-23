@@ -1,6 +1,7 @@
 var d3 = import('d3');
+var csv_parse = import('csv-parse');
 
-trees = csv("https://gis-cityofchampaign.opendata.arcgis.com/datasets/979bbeefffea408e8f1cb7a397196c64_22.csv?outSR=%7B%22latestWkid%22%3A3857%2C%22wkid%22%3A102100%7D", autoType);
+trees = csv_parse.csv("https://gis-cityofchampaign.opendata.arcgis.com/datasets/979bbeefffea408e8f1cb7a397196c64_22.csv?outSR=%7B%22latestWkid%22%3A3857%2C%22wkid%22%3A102100%7D", autoType);
 
 function makeTrees() {
   const width = 450;
@@ -29,7 +30,7 @@ function makeTrees() {
   const leftPanel = select("#panel1");
   const secondPanel = select("#panel2");
   var test = svg.node();
-  leftPanel.appendChild(test);
+  leftPanel.append(test);
   const quadTree = quadtree()
     .x( d => xScale(d.X)) //get x points
     .y(d=> yScale(d.Y)) //get y points

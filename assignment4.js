@@ -1,7 +1,7 @@
 var d3 = import('d3');
 var csv_parse = import('csv-parse');
 
-trees = csv_parse.csv("https://gis-cityofchampaign.opendata.arcgis.com/datasets/979bbeefffea408e8f1cb7a397196c64_22.csv?outSR=%7B%22latestWkid%22%3A3857%2C%22wkid%22%3A102100%7D", autoType);
+trees = csv_parse.csv("https://gis-cityofchampaign.opendata.arcgis.com/datasets/979bbeefffea408e8f1cb7a397196c64_22.csv?outSR=%7B%22latestWkid%22%3A3857%2C%22wkid%22%3A102100%7D");
 
 function makeTrees() {
   const width = 450;

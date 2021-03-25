@@ -28,8 +28,8 @@ function papaCompleteCallback(results, file) {
    .attr("height", height)
    .attr("viewBox", [0,0,1,1])
    .style("border", "solid 1px black");
-  const xScale = d3.scaleLinear().domain(d3.extent(results, d => d.X)).range([0,1]);
-  const yScale = d3.scaleLinear().domain(d3.extent(results, d => d.Y)).range([1,0]);
+  const xScale = d3.scaleLinear().domain(d3.extent(results.data, d => d.X)).range([0,1]);
+  const yScale = d3.scaleLinear().domain(d3.extent(results.data, d => d.Y)).range([1,0]);
    svg.append("g")
     .attr("id", "trees")
     .selectAll("circle")

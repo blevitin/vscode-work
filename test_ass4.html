@@ -41,6 +41,33 @@
   })
 
 function makeTrees() {
+  var trees = Papa.parse("https://gis-cityofchampaign.opendata.arcgis.com/datasets/979bbeefffea408e8f1cb7a397196c64_22.csv?outSR=%7B%22latestWkid%22%3A3857%2C%22wkid%22%3A102100%7D",{
+    download: true,
+    delimiter: "",	// auto-detect
+	  newline: "",	// auto-detect
+	  quoteChar: '"',
+	  escapeChar: '"',
+	  header: true,
+	  transformHeader: undefined,
+	  dynamicTyping: true,
+	  preview: 0,
+	  encoding: "",
+  	worker: false,
+	  comments: false,
+	  step: undefined,
+  	complete: undefined,
+  	error: undefined,
+	  downloadRequestHeaders: undefined,
+  	downloadRequestBody: undefined,
+  	skipEmptyLines: false,
+  	chunk: undefined,
+  	chunkSize: undefined,
+	  fastMode: undefined,
+  	beforeFirstChunk: undefined,
+  	withCredentials: undefined,
+  	transform: undefined,
+	  delimitersToGuess: [',', '\t', '|', ';', Papa.RECORD_SEP, Papa.UNIT_SEP]
+  });
   const width = 450;
   const height = 450;
   const svg = d3.create("svg")

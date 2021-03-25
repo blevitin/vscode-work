@@ -18,6 +18,10 @@ function papaErrorCallback(error, file) {
   console.log(file);
 }
 
+function papaCompleteCallback(results, file) {
+  console.log("Parsing complete. Results: ", results, file);
+}
+
 function makeTrees() {
   var trees = Papa.parse("https://gis-cityofchampaign.opendata.arcgis.com/datasets/979bbeefffea408e8f1cb7a397196c64_22.csv",{
     download: true,
@@ -33,7 +37,7 @@ function makeTrees() {
   	worker: false,
 	  comments: false,
 	  step: undefined,
-  	complete: undefined,
+  	complete: papaCompleteCallback,
   	error: papaErrorCallback,
 	  downloadRequestHeaders: undefined,
   	downloadRequestBody: undefined,

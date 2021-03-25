@@ -14,7 +14,7 @@
 <script>
 
 function makeTrees() {
-  var trees = Papa.parse("https://gis-cityofchampaign.opendata.arcgis.com/datasets/979bbeefffea408e8f1cb7a397196c64_22.csv",{
+  var trees = console.log(Papa.parse("https://gis-cityofchampaign.opendata.arcgis.com/datasets/979bbeefffea408e8f1cb7a397196c64_22.csv",{
     download: true,
     delimiter: "",	// auto-detect
 	  newline: "",	// auto-detect
@@ -40,7 +40,7 @@ function makeTrees() {
   	withCredentials: undefined,
   	transform: undefined,
 	  delimitersToGuess: [',', '\t', '|', ';', Papa.RECORD_SEP, Papa.UNIT_SEP]
-  });
+  }));
   const width = 450;
   const height = 450;
   const svg = d3.create("svg")
@@ -48,7 +48,6 @@ function makeTrees() {
    .attr("height", height)
    .attr("viewBox", [0,0,1,1])
    .style("border", "solid 1px black");
-  console.log(trees);
   const xScale = d3.scaleLinear().domain(d3.extent(trees, d => d.X)).range([0,1]);
   const yScale = d3.scaleLinear().domain(d3.extent(trees, d => d.Y)).range([1,0]);
    svg.append("g")

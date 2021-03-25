@@ -33,7 +33,7 @@ function papaCompleteCallback(results, file) {
    svg.append("g")
     .attr("id", "trees")
     .selectAll("circle")
-    .data(trees)
+    .data(results)
     .enter()
     .append("circle")
     .attr("cx", d => xScale(d.X))

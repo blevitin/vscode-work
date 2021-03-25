@@ -40,8 +40,8 @@ function papaCompleteCallback(results, file) {
     .attr("cy", d => yScale(d.Y))
     .attr("r", 0.001);
 
-  const leftPanel = select("#panel1");
-  const secondPanel = select("#panel2");
+  const leftPanel = d3.select("#panel1");
+  const secondPanel = d3.select("#panel2");
   const quadTree = d3.quadtree()
     .x( d => xScale(d.X)) //get x points
     .y(d=> yScale(d.Y)) //get y points

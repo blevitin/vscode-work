@@ -13,8 +13,13 @@
 <div id="panel2">panel 2 should be here</div>
 <script>
 
+function papaErrorCallback(error, file) {
+  console.log(error);
+  console.log(file);
+}
+
 function makeTrees() {
-  var trees = console.log(Papa.parse("https://gis-cityofchampaign.opendata.arcgis.com/datasets/979bbeefffea408e8f1cb7a397196c64_22.csv",{
+  var trees = Papa.parse("https://gis-cityofchampaign.opendata.arcgis.com/datasets/979bbeefffea408e8f1cb7a397196c64_22.csv",{
     download: true,
     delimiter: "",	// auto-detect
 	  newline: "",	// auto-detect
@@ -29,7 +34,7 @@ function makeTrees() {
 	  comments: false,
 	  step: undefined,
   	complete: undefined,
-  	error: undefined,
+  	error: papaErrorCallback,
 	  downloadRequestHeaders: undefined,
   	downloadRequestBody: undefined,
   	skipEmptyLines: false,
@@ -40,7 +45,7 @@ function makeTrees() {
   	withCredentials: undefined,
   	transform: undefined,
 	  delimitersToGuess: [',', '\t', '|', ';', Papa.RECORD_SEP, Papa.UNIT_SEP]
-  }));
+  });
   const width = 450;
   const height = 450;
   const svg = d3.create("svg")

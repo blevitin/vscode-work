@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Trees of Champaign</title>
+<link rel="stylesheet" type="text/css" href="./inspector.css">
+<body>
+    <h1>Trees of Champaign</h1>
+    <h2>Brenna Levitin</h2><br />IS 545<br />Assignment 4<br />April 4, 2021<br />
+<script type="module">
+
+import define from "./index.js";
+import {Runtime, Library, Inspector} from "./runtime.js";
+
+const runtime = new Runtime();
+const main = runtime.module(define, Inspector.into(document.body));
+
+</script>
+</body>

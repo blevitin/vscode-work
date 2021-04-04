@@ -1,8 +1,12 @@
-// https://observablehq.com/@blevitin/trees-of-champaign-in-progress@177
+// https://observablehq.com/@blevitin/trees-of-champaign-in-progress@189
 export default function define(runtime, observer) {
   const main = runtime.module();
   main.variable(observer()).define(["md"], function(md){return(
-md`# Trees of Champaign - in progress`
+md`# Trees of Champaign
+## Brenna Levitin
+IS 545<br />
+Assignment 4<br />
+April 4, 2021`
 )});
   main.variable(observer("d3")).define("d3", ["require"], function(require){return(
 require("d3@6")
@@ -34,18 +38,14 @@ function makeTrees() {
   return {svg: svg, xScale: xScale, yScale: yScale};
 }
 )});
-  main.variable(observer()).define(["html"], function(html){return(
-html`<style>.selected { fill:red; }</style>`
-)});
   main.variable(observer()).define(["md"], function(md){return(
-md`<div id="panel1"></div><div id="panel2"></div>`
+md`<div id="panel1"></div><div id="panel2"></div><div id="panel3"></div><div id="panel4"></div>`
 )});
   main.variable(observer()).define(["makeTrees","d3","trees"], function*(makeTrees,d3,trees)
 {
   const {svg, xScale, yScale} = makeTrees();
-  const firstPanel = d3.select("#panel1").text("Use your scroll wheel to zoom in on the map.");
+  const firstPanel = d3.select("#panel1").text("Use your scroll wheel to zoom in on the map. Scroll over a dot to discover its location (street name), species, and common name.");
   const secondPanel = d3.select("#panel2");
-  const colorScale = d3.scaleOrdinal().domain(d3.group(trees, d => d.COND)).range(d3.schemeCategory10);
   yield svg.node();
   const quadTree = d3
     .quadtree()
@@ -55,6 +55,31 @@ md`<div id="panel1"></div><div id="panel2"></div>`
   svg.on("mousemove", (e,d) => {
     var node = quadTree.find(e.offsetX, e.offsetY);
     secondPanel.text("The tree you have selected is on " + `${node.STREET}` + ". Its species is " + `${node.SPP}` + " and its common name is " + `${node.COMMON}` + ".");
+    });
+  const zoom = d3.zoom();
+  function zoomCalled(event) {
+    const zoomX = event.transform.rescaleX(xScale);
+    const zoomY = event.transform.rescaleY(yScale);
+    svg.select("g#trees").attr("transform", event.transform);
+  }
+  svg.call(zoom.on("zoom", zoomCalled));
+}
+);
+  main.variable(observer()).define(["makeTrees","d3","trees"], function*(makeTrees,d3,trees)
+{
+  const {svg, xScale, yScale} = makeTrees();
+  const thirdPanel = d3.select("#panel3").text("Select part of the map. Each circle in your selection is supposed to change color depending on the health of the tree, but it doesn't do that.");
+  const fourthPanel = d3.select("#panel4");
+  const colorScale = d3.scaleOrdinal().domain(d3.group(trees, d => d.COND)).range(d3.schemeCategory10);
+  yield svg.node();
+  const quadTree = d3
+    .quadtree()
+    .x( d => xScale(d.X)) //get x points
+    .y(d=> yScale(d.Y)) //get y points
+    .addAll(trees);
+  svg.on("mousemove", (e,d) => {
+    var node = quadTree.find(e.offsetX, e.offsetY);
+    fourthPanel.text("The tree you have selected is on " + `${node.STREET}` + ". Its species is " + `${node.SPP}` + " and its common name is " + `${node.COMMON}` + ".");
     });
   const brush = d3.brush().extent([[0, 0], [20, 20]]).handleSize(0.1);
   function brushCalled(event) {

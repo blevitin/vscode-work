@@ -44,7 +44,7 @@ md`<div id="panel1"></div><div id="panel2"></div><div id="panel3"></div><div id=
   main.variable(observer()).define(["makeTrees","d3","trees"], function*(makeTrees,d3,trees)
 {
   const {svg, xScale, yScale} = makeTrees();
-  const firstPanel = d3.select("#panel1").text("Use your scroll wheel to zoom in on the map. Scroll over a dot to discover its location (street name), species, and common name.");
+  const firstPanel = d3.select("#panel1").text("For the top graph, use your scroll wheel to zoom in on the map. Scroll over a dot to discover its location (street name), species, and common name.");
   const secondPanel = d3.select("#panel2");
   yield svg.node();
   const quadTree = d3
@@ -68,7 +68,7 @@ md`<div id="panel1"></div><div id="panel2"></div><div id="panel3"></div><div id=
   main.variable(observer()).define(["makeTrees","d3","trees"], function*(makeTrees,d3,trees)
 {
   const {svg, xScale, yScale} = makeTrees();
-  const thirdPanel = d3.select("#panel3").text("Select part of the map. Each circle in your selection is supposed to change color depending on the health of the tree, but it doesn't do that.");
+  const thirdPanel = d3.select("#panel3").text("For the bottom graph, select part of the map. Each circle in your selection is supposed to change color depending on the health of the tree, but it doesn't do that.");
   const fourthPanel = d3.select("#panel4");
   const colorScale = d3.scaleOrdinal().domain(d3.group(trees, d => d.COND)).range(d3.schemeCategory10);
   yield svg.node();
